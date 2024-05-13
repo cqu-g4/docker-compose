@@ -1,0 +1,23 @@
+version: '3.7'
+
+networks:
+  mongodb:
+    driver: bridge
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb
+    restart: unless-stopped
+    volumes:
+      - mongodb_database_data:/bitnami/mongodb
+    environment:
+      - MONGODB_ROOT_USERNAME=rooot
+      - MONGODB_ROOT_PASSWORD=aASDFGHWERTYUIOVBNMBNXCVB234567SDFGHJ
+    networks:
+      - mongodb
+    ports:
+      - '27018:27017'
+volumes:
+  mongodb_database_data:
+    driver: local
