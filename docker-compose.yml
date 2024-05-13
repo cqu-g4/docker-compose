@@ -19,6 +19,11 @@ services:
     image: ghcr.io/cqu-g4/admin-service:main
     ports:
       - 8081:8081
+  user-service:
+    container_name: user-service
+    image: ghcr.io/cqu-g4/user-service:main
+    ports:
+      - 8083:8083
   auth-service:
     container_name: auth-service
     image: ghcr.io/cqu-g4/auth-service:main
