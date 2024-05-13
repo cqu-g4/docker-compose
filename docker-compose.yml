@@ -4,28 +4,26 @@ services:
     image: ghcr.io/cqu-g4/discovery-server:main
     ports:
       - 8761:8761
-   configuration-server:
-     container_name: configuration-server
-     image: ghcr.io/cqu-g4/configuration-server:main
-     ports:
-       - 8888:8888
-     gateway-server:
-       container_name: gateway-server
-       image: ghcr.io/cqu-g4/gateway-server:main
-       ports:
-         - 8000:8000
+  configuration-server:
+    container_name: configuration-server
+    image: ghcr.io/cqu-g4/configuration-server:main
+    ports:
+      - 8888:8888
+  gateway-server:
+    container_name: gateway-server
+    image: ghcr.io/cqu-g4/gateway-server:main
+    ports:
+      - 8000:8000
   admin-service:
     container_name: admin-service
     image: ghcr.io/cqu-g4/admin-service:main
     ports:
       - 8081:8081
-
   auth-service:
     container_name: auth-service
     image: ghcr.io/cqu-g4/auth-service:main
     ports:
       - 7090:7090
-
   therapy-provider-service:
     container_name: therapy-provider-service
     image: ghcr.io/cqu-g4/therapy-provider-service:main
