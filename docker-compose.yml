@@ -9,9 +9,6 @@ services:
     image: ghcr.io/cqu-g4/discovery-server:main
     ports:
       - 8761:8761
-    environment:
-      - eureka.instance.preferIpAddress=true
-      - eureka.client.service-url.defaultZone=http://discovery-server:8761/eureka
     networks:
       - cqu-g4-net
   configuration-server:
@@ -21,10 +18,6 @@ services:
       - ./configuration-repo:/app/configuration-repo
     ports:
       - 8888:8888
-    environment:
-      - eureka.instance.preferIpAddress=true
-      - eureka.client.service-url.defaultZone=http://discovery-server:8761/eureka
-      # - SPRING_PROFILES_ACTIVE=native
     networks:
       - cqu-g4-net
     depends_on:
@@ -36,6 +29,9 @@ services:
       - 8000:8000
     networks:
       - cqu-g4-net
+    depends_on:
+      - discovery-server
+      - configuration-server
   admin-service:
     container_name: admin-service
     image: ghcr.io/cqu-g4/admin-service:main
@@ -43,11 +39,11 @@ services:
       - 8081:8081
     volumes:
       - ./configuration-repo:/app/conf/
-    environment:
-      # - APP_ARGS=-Dspring.config.location=/app/conf/admin-service.yml
-      - eureka.client.service-url.defaultZone=http://discovery-server:8761/eureka
     networks:
       - cqu-g4-net
+    depends_on:
+      - discovery-server
+      - configuration-server
   user-service:
     container_name: user-service
     image: ghcr.io/cqu-g4/user-service:main
@@ -57,6 +53,9 @@ services:
       - 8083:8083
     networks:
       - cqu-g4-net
+    depends_on:
+      - discovery-server
+      - configuration-server
   auth-service:
     container_name: auth-service
     image: ghcr.io/cqu-g4/auth-service:main
@@ -64,6 +63,9 @@ services:
       - 7090:7090
     networks:
       - cqu-g4-net
+    depends_on:
+      - discovery-server
+      - configuration-server
   therapy-provider-service:
     container_name: therapy-provider-service
     image: ghcr.io/cqu-g4/therapy-provider-service:main
@@ -71,3 +73,6 @@ services:
       - 8082:8082
     networks:
       - cqu-g4-net
+    depends_on:
+      - discovery-server
+      - configuration-server
