@@ -7,6 +7,8 @@ services:
   discovery-server:
     container_name: discovery-server
     image: ghcr.io/cqu-g4/discovery-server:main
+    volumes:
+      - ./configuration-repo:/app/config/
     ports:
       - 8761:8761
     networks:
