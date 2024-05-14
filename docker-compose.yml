@@ -35,6 +35,9 @@ services:
     image: ghcr.io/cqu-g4/admin-service:main
     ports:
       - 8081:8081
+    environment:
+      - eureka.instance.preferIpAddress=true
+      - eureka.client.service-url.defaultZone=http://discovery-server:8761/eureka
     networks:
       - cqu-g4-net
   user-service:
