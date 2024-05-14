@@ -27,6 +27,8 @@ services:
       # - SPRING_PROFILES_ACTIVE=native
     networks:
       - cqu-g4-net
+    depends_on:
+      - discovery-server
   gateway-server:
     container_name: gateway-server
     image: ghcr.io/cqu-g4/gateway-server:main
