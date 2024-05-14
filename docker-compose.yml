@@ -18,6 +18,9 @@ services:
       - ./configuration-repo:/app/config/
     ports:
       - 8888:8888
+    environment:
+      - eureka.instance.preferIpAddress=true
+      - eureka.client.service-url.defaultZone=http://discovery-server:8761/eureka
     networks:
       - cqu-g4-net
   gateway-server:
