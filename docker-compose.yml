@@ -18,7 +18,7 @@ services:
     container_name: configuration-server
     image: ghcr.io/cqu-g4/configuration-server:main
     volumes:
-      - ./configuration-repo:/app/conf/
+      - ./configuration-repo:/app/configuration-repo
     ports:
       - 8888:8888
     environment:
