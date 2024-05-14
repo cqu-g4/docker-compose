@@ -24,7 +24,7 @@ services:
     environment:
       - eureka.instance.preferIpAddress=true
       - eureka.client.service-url.defaultZone=http://discovery-server:8761/eureka
-      - SPRING_PROFILES_ACTIVE=native
+      # - SPRING_PROFILES_ACTIVE=native
     networks:
       - cqu-g4-net
   gateway-server:
