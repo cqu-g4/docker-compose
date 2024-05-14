@@ -20,6 +20,12 @@ services:
       - 8888:8888
     networks:
       - cqu-g4-net
+    healthcheck:
+      test: curl --fail http://localhost:8888/actuator/info || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
     depends_on:
       - discovery-server
   gateway-server:
@@ -29,6 +35,12 @@ services:
       - 8000:8000
     networks:
       - cqu-g4-net
+    healthcheck:
+      test: curl --fail http://localhost:8000/actuator/info || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
     depends_on:
       - discovery-server
       - configuration-server
@@ -41,6 +53,12 @@ services:
       - ./configuration-repo:/app/conf/
     networks:
       - cqu-g4-net
+    healthcheck:
+      test: curl --fail http://localhost:8081/actuator/info || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
     depends_on:
       - discovery-server
       - configuration-server
@@ -53,6 +71,12 @@ services:
       - 8083:8083
     networks:
       - cqu-g4-net
+    healthcheck:
+      test: curl --fail http://localhost:8083/actuator/info || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
     depends_on:
       - discovery-server
       - configuration-server
@@ -63,6 +87,12 @@ services:
       - 7090:7090
     networks:
       - cqu-g4-net
+    healthcheck:
+      test: curl --fail http://localhost:7090/actuator/info || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
     depends_on:
       - discovery-server
       - configuration-server
@@ -73,6 +103,12 @@ services:
       - 8082:8082
     networks:
       - cqu-g4-net
+    healthcheck:
+      test: curl --fail http://localhost:8082/actuator/info || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
     depends_on:
       - discovery-server
       - configuration-server
