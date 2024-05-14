@@ -39,8 +39,10 @@ services:
     image: ghcr.io/cqu-g4/admin-service:main
     ports:
       - 8081:8081
+    volumes:
+      - ./configuration-repo:/app/conf/
     environment:
-      - APP_ARGS="-Dspring.config.location=/app/conf/admin-service.yml"
+      - APP_ARGS=-Dspring.config.location=/app/conf/admin-service.yml
       - eureka.client.service-url.defaultZone=http://discovery-server:8761/eureka
     networks:
       - cqu-g4-net
