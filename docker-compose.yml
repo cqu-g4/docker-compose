@@ -9,6 +9,9 @@ services:
     image: ghcr.io/cqu-g4/discovery-server:main
     ports:
       - 8761:8761
+    environment:
+      - eureka.instance.preferIpAddress=true
+      - eureka.client.service-url.defaultZone=http://discovery-server:8761/eureka
     networks:
       - cqu-g4-net
   configuration-server:
