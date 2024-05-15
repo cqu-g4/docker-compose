@@ -22,11 +22,13 @@ services:
     image: mongo-express
     ports:
       - "9090:8081"
+    networks:
+      - mongodb
     environment: 
       - ME_CONFIG_MONGODB_URL=mongodb://mongodb:27017
     depends_on:
       - mongodb
-    restart: always
+    restart: unless-stopped
 volumes:
   mongodb_database_data:
     driver: local
