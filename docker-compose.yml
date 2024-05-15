@@ -6,6 +6,7 @@ networks:
 services:
   discovery-server:
     container_name: discovery-server
+    restart: unless-stopped
     image: ghcr.io/cqu-g4/discovery-server:main
     ports:
       - 8761:8761
@@ -19,6 +20,7 @@ services:
       - cqu-g4-net
   configuration-server:
     container_name: configuration-server
+    restart: unless-stopped
     image: ghcr.io/cqu-g4/configuration-server:main
     volumes:
       - ./configuration-repo:/app/configuration-repo
@@ -36,6 +38,7 @@ services:
       - discovery-server
   gateway-server:
     container_name: gateway-server
+    restart: unless-stopped
     image: ghcr.io/cqu-g4/gateway-server:main
     ports:
       - 8000:8000
@@ -52,6 +55,7 @@ services:
       - configuration-server
   admin-service:
     container_name: admin-service
+    restart: unless-stopped
     image: ghcr.io/cqu-g4/admin-service:main
     ports:
       - 8081:8081
@@ -70,6 +74,7 @@ services:
       - configuration-server
   user-service:
     container_name: user-service
+    restart: unless-stopped
     image: ghcr.io/cqu-g4/user-service:main
     volumes:
       - ./configuration-repo:/app/conf/
@@ -88,6 +93,7 @@ services:
       - configuration-server
   auth-service:
     container_name: auth-service
+    restart: unless-stopped
     image: ghcr.io/cqu-g4/auth-service:main
     ports:
       - 7090:7090
@@ -104,6 +110,7 @@ services:
       - configuration-server
   therapy-provider-service:
     container_name: therapy-provider-service
+    restart: unless-stopped
     image: ghcr.io/cqu-g4/therapy-provider-service:main
     ports:
       - 8082:8082
